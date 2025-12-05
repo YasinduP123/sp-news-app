@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.yasindu.sptask.dto.NewsDto;
-import org.yasindu.sptask.response.NewsResponse;
+import org.yasindu.sptask.response.NewsDto;
 import org.yasindu.sptask.service.NewsService;
 
 import java.util.List;
@@ -19,22 +19,22 @@ public class NewsController {
 	private final NewsService newsService;
 
 	@PostMapping
-	public ResponseEntity<NewsResponse> createNews(@Valid @RequestBody NewsDto request) {
+	public ResponseEntity<NewsDto> createNews(@Valid @RequestBody NewsDto request) {
 		return ResponseEntity.ok(newsService.createNews(request));
 	}
 
 	@GetMapping
-	public ResponseEntity<List<NewsResponse>> getAllNews() {
+	public ResponseEntity<List<NewsDto>> getAllNews() {
 		return ResponseEntity.ok(newsService.getAllNews());
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<NewsResponse> getNewsById(@PathVariable Long id) {
+	public ResponseEntity<NewsDto> getNewsById(@PathVariable Long id) {
 		return ResponseEntity.ok(newsService.getNewsByCategory(id));
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<NewsResponse> updateNews(
+	public ResponseEntity<NewsDto> updateNews(
 			@PathVariable Long id,
 			@RequestBody NewsDto request) {
 		return ResponseEntity.ok(newsService.updateNews(id, request));
