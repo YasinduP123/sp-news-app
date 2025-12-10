@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.yasindu.sptask.dto.CategoryDto;
 
+import java.util.List;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -26,5 +28,10 @@ public class NewsEntity{
 			joinColumns = @JoinColumn(name = "place_id", nullable = false),
 			inverseJoinColumns = @JoinColumn(name = "category_id", nullable = false)
 	)
-	private CategoryDto category;
+	private List<CategoryEntity> categories;
+
+	@OneToMany(
+			mappedBy = "news"
+	)
+	private List<CommentsEntity> news;
 }

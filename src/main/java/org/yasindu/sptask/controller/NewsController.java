@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.yasindu.sptask.dto.NewsDto;
-import org.yasindu.sptask.response.NewsDto;
 import org.yasindu.sptask.service.NewsService;
 
 import java.util.List;

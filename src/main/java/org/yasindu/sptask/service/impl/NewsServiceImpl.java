@@ -8,6 +8,7 @@ import org.yasindu.sptask.entity.NewsEntity;
 import org.yasindu.sptask.repository.NewsRepository;
 import org.yasindu.sptask.service.NewsService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,8 +27,9 @@ public class NewsServiceImpl implements NewsService {
 
 	@Override
 	public List<NewsDto> getAllNews() {
-		List<NewsEntity> all = repository.findAll();
-		return List.of(all);
+		List<NewsDto> all = new ArrayList<>();
+		repository.findAll().forEach(newsEntity -> all.add(mapper.map(newsEntity, NewsDto.class)));
+		return all;
 	}
 
 	@Override

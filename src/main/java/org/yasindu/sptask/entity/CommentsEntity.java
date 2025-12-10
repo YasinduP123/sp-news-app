@@ -1,12 +1,12 @@
 package org.yasindu.sptask.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Setter
 @Getter
@@ -15,11 +15,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name="comments")
 public class CommentsEntity {
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String commentText;
 
-	@ManyToMany(
-			mappedBy = "comments"
-	)
-	private Long newsId;
+	@ManyToOne
+	@JoinColumn(name="news_id", nullable = false)
+	private NewsEntity news;
 }
